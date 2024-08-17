@@ -35,7 +35,7 @@ The **Linux Mint Setup Script** automates the installation of essential applicat
 
 The script also sets a custom wallpaper downloaded from GitHub. The wallpaper file is named `wp.jpg`.
 
-![Wallpaper](https://github.com/rm-ux/Linux-Mint-Setup/raw/main/wp.jpg)
+![Wallpaper](https://raw.githubusercontent.com/rm-ux/Linux-Mint-Setup/main/IMG_20240817_210018.png)
 
 ## Usage 🛠️
 
