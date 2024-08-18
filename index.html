@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Linux Mint Setup Script Generator: Select your preferred applications and generate an installation script.">
+    <meta name="keywords" content="Linux Mint, setup script, installation script, applications, Linux tools">
+    <meta name="author" content="rmux">
+    <meta name="google-site-verification" content="HOS27r-IKNno3ehAefoGrpmY6M04l4SU0m6KDHXP6BI">
+    <title>Linux Mint Setup Script Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #000000; /* AMOLED black background */
+            color: #ffffff; /* White text */
+            border-radius: 8px;
+            max-width: 900px; /* Max width for better readability */
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+        }
+        h1 {
+            color: #4CAF50; /* Linux Mint green for the main heading */
+            text-align: center; /* Centered heading */
+            margin-bottom: 20px; /* Space below heading */
+            font-size: 2.5em; /* Larger font size */
+        }
+        h2 {
+            color: #4CAF50; /* Linux Mint green for category headings */
+            margin-top: 20px; /* Space above category headings */
+            margin-bottom: 10px; /* Space below category headings */
+            font-size: 1.5em; /* Slightly larger font size */
+        }
+        label {
+            display: block;
+            margin: 8px 0; /* Improved spacing for labels */
+            color: #ffffff; /* White color for labels */
+            font-size: 1.1em; /* Slightly larger font size for labels */
+        }
+        #search {
+            margin-bottom: 20px;
+            padding: 12px; /* Increased padding for better usability */
+            border-radius: 5px;
+            border: 1px solid #333;
+            width: calc(100% - 26px); /* Full width minus padding */
+            font-size: 1em; /* Font size for search input */
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 20px; /* Increased padding for better button size */
+            background-color: #4CAF50; /* Linux Mint green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Larger font size for button */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            width: 100%; /* Full width button */
+        }
+        button:hover {
+            background-color: #388E3C; /* Slightly darker green on hover */
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+            background-color: #1c1c1c; /* Dark gray background for the textarea */
+            color: #ffffff; /* White text for the textarea */
+            border: 1px solid #333; /* Slightly lighter border */
+            border-radius: 5px; /* Rounded corners for the textarea */
+            padding: 10px; /* Padding inside the textarea */
+            font-family: monospace; /* Monospace font for code */
+            resize: none; /* Disable resizing */
+        }
+        #releases {
+            margin-top: 30px;
+            background-color: #1c1c1c;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .release-item {
+            margin: 5px 0;
+            color: #ffffff; /* White color for release items */
+        }
+        footer {
+            text-align: center; /* Centered footer */
+            margin-top: 20px; /* Space above footer */
+            color: #888; /* Light gray color for footer text */
+            font-size: 0.9em; /* Smaller font size for footer */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Linux Mint Setup Script Generator</h1>
+<input type="text" id="search" placeholder="Search applications..." onkeyup="filterApplications()">
+
+<p>Select the applications you want to install:</p>
+
+<form id="appForm">
+    <h2>Web Browsers</h2>
+    <label><input type="checkbox" value="google-chrome"> Google Chrome</label>
+    <label><input type="checkbox" value="firefox"> Firefox</label>
+    <label><input type="checkbox" value="brave-browser"> Brave Browser</label>
+    <label><input type="checkbox" value="opera"> Opera</label>
+    <label><input type="checkbox" value="motrix"> Motrix</label>
+
+    <h2>Office Suites</h2>
+    <label><input type="checkbox" value="libreoffice"> LibreOffice</label>
+    <label><input type="checkbox" value="wps-office"> WPS Office</label>
+    <label><input type="checkbox" value="onlyoffice"> OnlyOffice</label>
+
+    <h2>Media Players</h2>
+    <label><input type="checkbox" value="vlc"> VLC</label>
+    <label><input type="checkbox" value="mpv"> mpv</label>
+    <label><input type="checkbox" value="smplayer"> SMPlayer</label>
+    <label><input type="checkbox" value="clementine"> Clementine</label>
+
+    <h2>Image Editors</h2>
+    <label><input type="checkbox" value="gimp"> GIMP</label>
+    <label><input type="checkbox" value="inkscape"> Inkscape</label>
+    <label><input type="checkbox" value="darktable"> Darktable</label>
+
+    <h2>Archive Managers</h2>
+    <label><input type="checkbox" value="file-roller"> File Roller</label>
+    <label><input type="checkbox" value="peazip"> PeaZip</label>
+    <label><input type="checkbox" value="engrampa"> Engrampa</label>
+
+    <h2>Text Editors</h2>
+    <label><input type="checkbox" value="gedit"> Gedit</label>
+    <label><input type="checkbox" value="sublime-text"> Sublime Text</label>
+    <label><input type="checkbox" value="atom"> Atom</label>
+    <label><input type="checkbox" value="vim"> Vim</label>
+
+    <h2>Terminal Emulators</h2>
+    <label><input type="checkbox" value="gnome-terminal"> GNOME Terminal</label>
+    <label><input type="checkbox" value="tilix"> Tilix</label>
+    <label><input type="checkbox" value="konsole"> Konsole</label>
+    <label><input type="checkbox" value="zsh"> Zsh</label>
+    <label><input type="checkbox" value="oh-my-zsh"> Oh My Zsh</label>
+
+    <h2>File Managers</h2>
+    <label><input type="checkbox" value="nautilus"> Nautilus</label>
+    <label><input type="checkbox" value="thunar"> Thunar</label>
+    <label><input type="checkbox" value="nemo"> Nemo</label>
+
+    <h2>Video Conferencing</h2>
+    <label><input type="checkbox" value="zoom"> Zoom</label>
+    <label><input type="checkbox" value="skype"> Skype</label>
+    <label><input type="checkbox" value="microsoft-teams"> Microsoft Teams</label>
+    <label><input type="checkbox" value="jitsi-meet"> Jitsi Meet</label>
+
+    <h2>Email Clients</h2>
+    <label><input type="checkbox" value="thunderbird"> Thunderbird</label>
+    <label><input type="checkbox" value="evolution"> Evolution</label>
+    <label><input type="checkbox" value="geary"> Geary</label>
+    <label><input type="checkbox" value="mailspring"> Mailspring</label>
+
+    <h2>Version Control</h2>
+    <label><input type="checkbox" value="git"> Git</label>
+    <label><input type="checkbox" value="gitkraken"> GitKraken</label>
+
+    <h2>Programming Languages</h2>
+    <label><input type="checkbox" value="python"> Python</label>
+    <label><input type="checkbox" value="nodejs"> Node.js</label>
+    <label><input type="checkbox" value="ruby"> Ruby</label>
+    <label><input type="checkbox" value="php"> PHP</label>
+    <label><input type="checkbox" value="java"> Java (default-jdk)</label>
+
+    <h2>Integrated Development Environments (IDEs)</h2>
+    <label><input type="checkbox" value="visual-studio-code"> Visual Studio Code</label>
+    <label><input type="checkbox" value="intellij-idea"> IntelliJ IDEA</label>
+    <label><input type="checkbox" value="pycharm"> PyCharm</label>
+    <label><input type="checkbox" value="eclipse"> Eclipse</label>
+
+    <h2>Virtualization</h2>
+    <label><input type="checkbox" value="virtualbox"> VirtualBox</label>
+    <label><input type="checkbox" value="vmware-workstation"> VMware Workstation</label>
+
+    <h2>Containerization</h2>
+    <label><input type="checkbox" value="docker"> Docker</label>
+    <label><input type="checkbox" value="podman"> Podman</label>
+
+    <h2>Cloud Storage Clients</h2>
+    <label><input type="checkbox" value="dropbox"> Dropbox</label>
+    <label><input type="checkbox" value="google-drive"> Google Drive (via rclone)</label>
+    <label><input type="checkbox" value="onedrive"> OneDrive (via rclone)</label>
+
+    <h2>Backup Software</h2>
+    <label><input type="checkbox" value="timeshift"> Timeshift</label>
+    <label><input type="checkbox" value="deja-dup"> Deja Dup</label>
+
+    <h2>System Monitor</h2>
+    <label><input type="checkbox" value="gnome-system-monitor"> GNOME System Monitor</label>
+    <label><input type="checkbox" value="htop"> Htop</label>
+
+    <h2>Firewall Configuration</h2>
+    <label><input type="checkbox" value="ufw"> UFW (Uncomplicated Firewall)</label>
+    <label><input type="checkbox" value="gufw"> GUFW</label>
+
+    <h2>Disk Usage Analyzer</h2>
+    <label><input type="checkbox" value="baobab"> Baobab</label>
+    <label><input type="checkbox" value="kdiskmark"> KDiskMark</label>
+
+    <h2>Networking Tools</h2>
+    <label><input type="checkbox" value="wireshark"> Wireshark</label>
+    <label><input type="checkbox" value="nmap"> nmap</label>
+    <label><input type="checkbox" value="zerotier"> Zerotier</label>
+
+    <h2>Screen Recording</h2>
+    <label><input type="checkbox" value="obs-studio"> OBS Studio</label>
+    <label><input type="checkbox" value="simplescreenrecorder"> SimpleScreenRecorder</label>
+
+    <h2>Audio Editing</h2>
+    <label><input type="checkbox" value="audacity"> Audacity</label>
+    <label><input type="checkbox" value="ardour"> Ardour</label>
+
+    <h2>Miscellaneous</h2>
+    <label><input type="checkbox" value="bleachbit"> BleachBit</label>
+    <label><input type="checkbox" value="redshift"> Redshift</label>
+    <label><input type="checkbox" value="gparted"> GParted</label>
+    <label><input type="checkbox" value="gimp-plugin-registry"> GIMP Plugin Registry</label>
+</form>
+
+<button onclick="generateScript()">Generate Script</button>
+<button id="downloadBtn" style="display:none;" onclick="downloadScript()">Download Script</button>
+
+<h2>Your Setup Script:</h2>
+<textarea id="output" readonly></textarea>
+
+<div id="releases">
+    <h2>Latest Releases</h2>
+    <div id="releaseList"></div>
+</div>
+
+<footer>
+    <p>Created with ❤️ for Linux Mint users</p>
+</footer>
+
+<script>
+let generatedScript = ""; // Variable to store the generated script
+
+function generateScript() {
+    const form = document.getElementById('appForm');
+    const output = document.getElementById('output');
+    let script = "#!/bin/bash\n\n";
+    script += "sudo apt update\n\n";
+    script += "apps=(\n";
+
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+    checkboxes.forEach((checkbox) => {
+        script += `    "${checkbox.value}"\n`;
+    });
+
+    script += ")\n\n";
+    script += "for app in \"\${apps[@]}\"; do\n";
+    script += "    sudo apt install -y \$app\n";
+    script += "done\n\n";
+    script += "echo \"Installation of selected applications completed!\"\n";
+
+    output.value = script;
+    generatedScript = script; // Store the generated script
+    document.getElementById('downloadBtn').style.display = 'block'; // Show download button
+}
+
+function downloadScript() {
+    const blob = new Blob([generatedScript], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'setup.sh'; // Name of the downloaded file
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url); // Clean up the URL object
+}
+
+// Function to filter applications based on search input
+function filterApplications() {
+    const searchInput = document.getElementById('search').value.toLowerCase();
+    const labels = document.querySelectorAll('label');
+
+    labels.forEach(label => {
+        if (label.textContent.toLowerCase().includes(searchInput)) {
+            label.style.display = 'block';
+        } else {
+            label.style.display = 'none';
+        }
+    });
+}
+
+// Function to fetch latest releases from GitHub
+async function fetchReleases() {
+    const response = await fetch('https://api.github.com/repos/rm-ux/Linux-Mint-Setup/releases');
+    const releases = await response.json();
+    const releaseList = document.getElementById('releaseList');
+
+    releases.forEach(release => {
+        const releaseItem = document.createElement('div');
+        releaseItem.className = 'release-item';
+        releaseItem.innerHTML = `<strong>${release.name}</strong>: ${release.body || 'No description'} <br><a href="${release.html_url}" target="_blank" style="color: #4CAF50;">View Release</a>`;
+        releaseList.appendChild(releaseItem);
+    });
+}
+
+// Call fetchReleases on page load
+fetchReleases();
+</script>
+
+</body>
+</html>
