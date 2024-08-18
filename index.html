@@ -21,9 +21,11 @@
             margin-right: auto;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
         }
+        header, footer {
+            text-align: center; /* Centered header and footer */
+        }
         h1 {
             color: #4CAF50; /* Linux Mint green for the main heading */
-            text-align: center; /* Centered heading */
             margin-bottom: 20px; /* Space below heading */
             font-size: 2.5em; /* Larger font size */
         }
@@ -85,7 +87,6 @@
             color: #ffffff; /* White color for release items */
         }
         footer {
-            text-align: center; /* Centered footer */
             margin-top: 20px; /* Space above footer */
             color: #888; /* Light gray color for footer text */
             font-size: 0.9em; /* Smaller font size for footer */
@@ -94,146 +95,172 @@
 </head>
 <body>
 
-<h1>Linux Mint Setup Script Generator</h1>
-<input type="text" id="search" placeholder="Search applications..." onkeyup="filterApplications()">
+<header>
+    <h1>Linux Mint Setup Script Generator</h1>
+    <input type="text" id="search" placeholder="Search applications..." aria-label="Search applications" onkeyup="filterApplications()">
+</header>
 
-<p>Select the applications you want to install:</p>
+<main>
+    <p>Select the applications you want to install:</p>
+    <form id="appForm">
+        <h2>Web Browsers</h2>
+        <label><input type="checkbox" value="google-chrome"> Google Chrome</label>
+        <label><input type="checkbox" value="firefox"> Firefox</label>
+        <label><input type="checkbox" value="brave-browser"> Brave Browser</label>
+        <label><input type="checkbox" value="opera"> Opera</label>
+        <label><input type="checkbox" value="vivaldi"> Vivaldi</label>
+        <label><input type="checkbox" value="microsoft-edge"> Microsoft Edge (via unofficial repo)</label>
 
-<form id="appForm">
-    <h2>Web Browsers</h2>
-    <label><input type="checkbox" value="google-chrome"> Google Chrome</label>
-    <label><input type="checkbox" value="firefox"> Firefox</label>
-    <label><input type="checkbox" value="brave-browser"> Brave Browser</label>
-    <label><input type="checkbox" value="opera"> Opera</label>
-    <label><input type="checkbox" value="motrix"> Motrix</label>
+        <h2>Download Managers</h2>
+        <label><input type="checkbox" value="motrix"> Motrix</label>
+        <label><input type="checkbox" value="fdm"> Free Download Manager (FDM)</label>
+        <label><input type="checkbox" value="jdownloader"> JDownloader</label>
+        <label><input type="checkbox" value="uget"> uGet</label>
+        <label><input type="checkbox" value="xdm"> Xtreme Download Manager (XDM)</label>
 
-    <h2>Office Suites</h2>
-    <label><input type="checkbox" value="libreoffice"> LibreOffice</label>
-    <label><input type="checkbox" value="wps-office"> WPS Office</label>
-    <label><input type="checkbox" value="onlyoffice"> OnlyOffice</label>
+        <h2>Screen Recording</h2>
+        <label><input type="checkbox" value="kazam"> Kazam</label>
+        <label><input type="checkbox" value="obs-studio"> OBS Studio</label>
+        <label><input type="checkbox" value="simplescreenrecorder"> SimpleScreenRecorder</label>
 
-    <h2>Media Players</h2>
-    <label><input type="checkbox" value="vlc"> VLC</label>
-    <label><input type="checkbox" value="mpv"> mpv</label>
-    <label><input type="checkbox" value="smplayer"> SMPlayer</label>
-    <label><input type="checkbox" value="clementine"> Clementine</label>
+        <h2>Office Suites</h2>
+        <label><input type="checkbox" value="libreoffice"> LibreOffice</label>
+        <label><input type="checkbox" value="wps-office"> WPS Office</label>
+        <label><input type="checkbox" value="onlyoffice"> OnlyOffice</label>
 
-    <h2>Image Editors</h2>
-    <label><input type="checkbox" value="gimp"> GIMP</label>
-    <label><input type="checkbox" value="inkscape"> Inkscape</label>
-    <label><input type="checkbox" value="darktable"> Darktable</label>
+        <h2>Media Players</h2>
+        <label><input type="checkbox" value="vlc"> VLC</label>
+        <label><input type="checkbox" value="mpv"> mpv</label>
+        <label><input type="checkbox" value="smplayer"> SMPlayer</label>
+        <label><input type="checkbox" value="clementine"> Clementine</label>
+        <label><input type="checkbox" value="kodi"> Kodi</label>
+        <label><input type="checkbox" value="plex"> Plex Media Server</label>
 
-    <h2>Archive Managers</h2>
-    <label><input type="checkbox" value="file-roller"> File Roller</label>
-    <label><input type="checkbox" value="peazip"> PeaZip</label>
-    <label><input type="checkbox" value="engrampa"> Engrampa</label>
+        <h2>Image Editors</h2>
+        <label><input type="checkbox" value="gimp"> GIMP</label>
+        <label><input type="checkbox" value="inkscape"> Inkscape</label>
+        <label><input type="checkbox" value="darktable"> Darktable</label>
+        <label><input type="checkbox" value="krita"> Krita</label>
+        <label><input type="checkbox" value="paintdotnet"> Paint.NET (via Wine)</label>
 
-    <h2>Text Editors</h2>
-    <label><input type="checkbox" value="gedit"> Gedit</label>
-    <label><input type="checkbox" value="sublime-text"> Sublime Text</label>
-    <label><input type="checkbox" value="atom"> Atom</label>
-    <label><input type="checkbox" value="vim"> Vim</label>
+        <h2>Text Editors</h2>
+        <label><input type="checkbox" value="gedit"> Gedit</label>
+        <label><input type="checkbox" value="sublime-text"> Sublime Text</label>
+        <label><input type="checkbox" value="atom"> Atom</label>
+        <label><input type="checkbox" value="vim"> Vim</label>
+        <label><input type="checkbox" value="notepadqq"> Notepadqq</label>
+        <label><input type="checkbox" value="geany"> Geany</label>
 
-    <h2>Terminal Emulators</h2>
-    <label><input type="checkbox" value="gnome-terminal"> GNOME Terminal</label>
-    <label><input type="checkbox" value="tilix"> Tilix</label>
-    <label><input type="checkbox" value="konsole"> Konsole</label>
-    <label><input type="checkbox" value="zsh"> Zsh</label>
-    <label><input type="checkbox" value="oh-my-zsh"> Oh My Zsh</label>
+        <h2>Terminal Emulators</h2>
+        <label><input type="checkbox" value="gnome-terminal"> GNOME Terminal</label>
+        <label><input type="checkbox" value="tilix"> Tilix</label>
+        <label><input type="checkbox" value="konsole"> Konsole</label>
+        <label><input type="checkbox" value="zsh"> Zsh</label>
+        <label><input type="checkbox" value="oh-my-zsh"> Oh My Zsh</label>
 
-    <h2>File Managers</h2>
-    <label><input type="checkbox" value="nautilus"> Nautilus</label>
-    <label><input type="checkbox" value="thunar"> Thunar</label>
-    <label><input type="checkbox" value="nemo"> Nemo</label>
+        <h2>File Managers</h2>
+        <label><input type="checkbox" value="nautilus"> Nautilus</label>
+        <label><input type="checkbox" value="thunar"> Thunar</label>
+        <label><input type="checkbox" value="nemo"> Nemo</label>
+        <label><input type="checkbox" value="spacefm"> SpaceFM</label>
 
-    <h2>Video Conferencing</h2>
-    <label><input type="checkbox" value="zoom"> Zoom</label>
-    <label><input type="checkbox" value="skype"> Skype</label>
-    <label><input type="checkbox" value="microsoft-teams"> Microsoft Teams</label>
-    <label><input type="checkbox" value="jitsi-meet"> Jitsi Meet</label>
+        <h2>Video Conferencing</h2>
+        <label><input type="checkbox" value="zoom"> Zoom</label>
+        <label><input type="checkbox" value="skype"> Skype</label>
+        <label><input type="checkbox" value="microsoft-teams"> Microsoft Teams</label>
+        <label><input type="checkbox" value="jitsi-meet"> Jitsi Meet</label>
 
-    <h2>Email Clients</h2>
-    <label><input type="checkbox" value="thunderbird"> Thunderbird</label>
-    <label><input type="checkbox" value="evolution"> Evolution</label>
-    <label><input type="checkbox" value="geary"> Geary</label>
-    <label><input type="checkbox" value="mailspring"> Mailspring</label>
+        <h2>Email Clients</h2>
+        <label><input type="checkbox" value="thunderbird"> Thunderbird</label>
+        <label><input type="checkbox" value="evolution"> Evolution</label>
+        <label><input type="checkbox" value="geary"> Geary</label>
+        <label><input type="checkbox" value="mailspring"> Mailspring</label>
 
-    <h2>Version Control</h2>
-    <label><input type="checkbox" value="git"> Git</label>
-    <label><input type="checkbox" value="gitkraken"> GitKraken</label>
+        <h2>Version Control</h2>
+        <label><input type="checkbox" value="git"> Git</label>
+        <label><input type="checkbox" value="gitkraken"> GitKraken</label>
 
-    <h2>Programming Languages</h2>
-    <label><input type="checkbox" value="python"> Python</label>
-    <label><input type="checkbox" value="nodejs"> Node.js</label>
-    <label><input type="checkbox" value="ruby"> Ruby</label>
-    <label><input type="checkbox" value="php"> PHP</label>
-    <label><input type="checkbox" value="java"> Java (default-jdk)</label>
+        <h2>Programming Languages</h2>
+        <label><input type="checkbox" value="python"> Python</label>
+        <label><input type="checkbox" value="nodejs"> Node.js</label>
+        <label><input type="checkbox" value="ruby"> Ruby</label>
+        <label><input type="checkbox" value="php"> PHP</label>
+        <label><input type="checkbox" value="java"> Java (default-jdk)</label>
+        <label><input type="checkbox" value="go"> Go</label>
+        <label><input type="checkbox" value="rust"> Rust</label>
+        <label><input type="checkbox" value="dart"> Dart</label>
 
-    <h2>Integrated Development Environments (IDEs)</h2>
-    <label><input type="checkbox" value="visual-studio-code"> Visual Studio Code</label>
-    <label><input type="checkbox" value="intellij-idea"> IntelliJ IDEA</label>
-    <label><input type="checkbox" value="pycharm"> PyCharm</label>
-    <label><input type="checkbox" value="eclipse"> Eclipse</label>
+        <h2>Integrated Development Environments (IDEs)</h2>
+        <label><input type="checkbox" value="visual-studio-code"> Visual Studio Code</label>
+        <label><input type="checkbox" value="intellij-idea"> IntelliJ IDEA</label>
+        <label><input type="checkbox" value="pycharm"> PyCharm</label>
+        <label><input type="checkbox" value="eclipse"> Eclipse</label>
+        <label><input type="checkbox" value="netbeans"> NetBeans</label>
 
-    <h2>Virtualization</h2>
-    <label><input type="checkbox" value="virtualbox"> VirtualBox</label>
-    <label><input type="checkbox" value="vmware-workstation"> VMware Workstation</label>
+        <h2>Virtualization</h2>
+        <label><input type="checkbox" value="virtualbox"> VirtualBox</label>
+        <label><input type="checkbox" value="vmware-workstation"> VMware Workstation</label>
+        <label><input type="checkbox" value="kvm"> KVM</label>
+        <label><input type="checkbox" value="qemu"> QEMU</label>
 
-    <h2>Containerization</h2>
-    <label><input type="checkbox" value="docker"> Docker</label>
-    <label><input type="checkbox" value="podman"> Podman</label>
+        <h2>Containerization</h2>
+        <label><input type="checkbox" value="docker"> Docker</label>
+        <label><input type="checkbox" value="podman"> Podman</label>
 
-    <h2>Cloud Storage Clients</h2>
-    <label><input type="checkbox" value="dropbox"> Dropbox</label>
-    <label><input type="checkbox" value="google-drive"> Google Drive (via rclone)</label>
-    <label><input type="checkbox" value="onedrive"> OneDrive (via rclone)</label>
+        <h2>Cloud Storage Clients</h2>
+        <label><input type="checkbox" value="dropbox"> Dropbox</label>
+        <label><input type="checkbox" value="google-drive"> Google Drive (via rclone)</label>
+        <label><input type="checkbox" value="onedrive"> OneDrive (via rclone)</label>
 
-    <h2>Backup Software</h2>
-    <label><input type="checkbox" value="timeshift"> Timeshift</label>
-    <label><input type="checkbox" value="deja-dup"> Deja Dup</label>
+        <h2>Backup Software</h2>
+        <label><input type="checkbox" value="timeshift"> Timeshift</label>
+        <label><input type="checkbox" value="deja-dup"> Deja Dup</label>
+        <label><input type="checkbox" value="backintime"> Back In Time</label>
+        <label><input type="checkbox" value="duplicati"> Duplicati</label>
 
-    <h2>System Monitor</h2>
-    <label><input type="checkbox" value="gnome-system-monitor"> GNOME System Monitor</label>
-    <label><input type="checkbox" value="htop"> Htop</label>
+        <h2>System Monitor</h2>
+        <label><input type="checkbox" value="gnome-system-monitor"> GNOME System Monitor</label>
+        <label><input type="checkbox" value="htop"> Htop</label>
 
-    <h2>Firewall Configuration</h2>
-    <label><input type="checkbox" value="ufw"> UFW (Uncomplicated Firewall)</label>
-    <label><input type="checkbox" value="gufw"> GUFW</label>
+        <h2>Firewall Configuration</h2>
+        <label><input type="checkbox" value="ufw"> UFW (Uncomplicated Firewall)</label>
+        <label><input type="checkbox" value="gufw"> GUFW</label>
 
-    <h2>Disk Usage Analyzer</h2>
-    <label><input type="checkbox" value="baobab"> Baobab</label>
-    <label><input type="checkbox" value="kdiskmark"> KDiskMark</label>
+        <h2>Disk Usage Analyzer</h2>
+        <label><input type="checkbox" value="baobab"> Baobab</label>
+        <label><input type="checkbox" value="kdiskmark"> KDiskMark</label>
 
-    <h2>Networking Tools</h2>
-    <label><input type="checkbox" value="wireshark"> Wireshark</label>
-    <label><input type="checkbox" value="nmap"> nmap</label>
-    <label><input type="checkbox" value="zerotier"> Zerotier</label>
+        <h2>Networking Tools</h2>
+        <label><input type="checkbox" value="wireshark"> Wireshark</label>
+        <label><input type="checkbox" value="nmap"> nmap</label>
+        <label><input type="checkbox" value="zerotier"> Zerotier</label>
 
-    <h2>Screen Recording</h2>
-    <label><input type="checkbox" value="obs-studio"> OBS Studio</label>
-    <label><input type="checkbox" value="simplescreenrecorder"> SimpleScreenRecorder</label>
+        <h2>Audio Editing</h2>
+        <label><input type="checkbox" value="audacity"> Audacity</label>
+        <label><input type="checkbox" value="ardour"> Ardour</label>
 
-    <h2>Audio Editing</h2>
-    <label><input type="checkbox" value="audacity"> Audacity</label>
-    <label><input type="checkbox" value="ardour"> Ardour</label>
+        <h2>Miscellaneous</h2>
+        <label><input type="checkbox" value="bleachbit"> BleachBit</label>
+        <label><input type="checkbox" value="redshift"> Redshift</label>
+        <label><input type="checkbox" value="gparted"> GParted</label>
+        <label><input type="checkbox" value="gimp-plugin-registry"> GIMP Plugin Registry</label>
+        <label><input type="checkbox" value="font-manager"> Font Manager</label>
 
-    <h2>Miscellaneous</h2>
-    <label><input type="checkbox" value="bleachbit"> BleachBit</label>
-    <label><input type="checkbox" value="redshift"> Redshift</label>
-    <label><input type="checkbox" value="gparted"> GParted</label>
-    <label><input type="checkbox" value="gimp-plugin-registry"> GIMP Plugin Registry</label>
-</form>
+        <h2>Installation Options</h2>
+        <label><input type="checkbox" id="hideTerminal"> Hide Terminal Output</label>
+    </form>
 
-<button onclick="generateScript()">Generate Script</button>
-<button id="downloadBtn" style="display:none;" onclick="downloadScript()">Download Script</button>
+    <button onclick="generateScript()">Generate Script</button>
+    <button id="downloadBtn" style="display:none;" onclick="downloadScript()">Download Script</button>
 
-<h2>Your Setup Script:</h2>
-<textarea id="output" readonly></textarea>
+    <h2>Your Setup Script:</h2>
+    <textarea id="output" readonly></textarea>
 
-<div id="releases">
-    <h2>Latest Releases</h2>
-    <div id="releaseList"></div>
-</div>
+    <div id="releases">
+        <h2>Latest Releases</h2>
+        <div id="releaseList"></div>
+    </div>
+</main>
 
 <footer>
     <p>Created with ❤️ for Linux Mint users</p>
@@ -246,7 +273,8 @@ function generateScript() {
     const form = document.getElementById('appForm');
     const output = document.getElementById('output');
     let script = "#!/bin/bash\n\n";
-    script += "sudo apt update\n\n";
+    script += "set -e\n"; // Exit immediately on error
+    script += "sudo apt-get update\n\n"; // Update package list
     script += "apps=(\n";
 
     const checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
@@ -256,9 +284,14 @@ function generateScript() {
 
     script += ")\n\n";
     script += "for app in \"\${apps[@]}\"; do\n";
-    script += "    sudo apt install -y \$app\n";
+    script += "    sudo apt-get install -y \$app || { echo \"Failed to install \$app\"; exit 1; }\n"; // Error handling
     script += "done\n\n";
     script += "echo \"Installation of selected applications completed!\"\n";
+
+    // Check if terminal output should be hidden
+    if (document.getElementById('hideTerminal').checked) {
+        script = `nohup bash -c "${script.replace(/(\n)/g, '\\n')}" > install.log 2>&1 &`;
+    }
 
     output.value = script;
     generatedScript = script; // Store the generated script
